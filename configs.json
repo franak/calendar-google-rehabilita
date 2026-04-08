@@ -1,0 +1,192 @@
+[
+    {
+        "alias": "default",
+        "titulo": "AVM146 Rehabilitación",
+        "subtitulo": "Eventos del calendario y resumen de ejecución",
+        "sources": [
+            {
+                "id": "principal",
+                "type": "ics",
+                "url": "https://calendar.google.com/calendar/ical/179a497285bff3a1e40cf1c18b60b7680ef3668c57ab50692387f957a1c9f7f6%40group.calendar.google.com/public/basic.ics",
+                "label": "Calendario Principal",
+                "color": "#38bdf8"
+            },
+            {
+                "id": "gantt-obras",
+                "type": "sheet",
+                "url": "https://docs.google.com/spreadsheets/d/1r77C5thE8HSzmNQooNA4elLEHiGzeu8h9mpNnmfhaG8/export?format=csv",
+                "label": "Gantt Obras",
+                "color": "#10b981"
+            }
+        ],
+        "ganttGroupSeparators": [
+            " - ",
+            " — ",
+            " | ",
+            ":"
+        ],
+        "madridHolidays": [
+            "2026-05-15",
+            "2026-04-02",
+            "2026-04-03"
+        ],
+        "infographicLinks": [
+            {
+                "category": "Planificación",
+                "label": "Gantt",
+                "url": "https://docs.google.com/spreadsheets/d/1r77C5thE8HSzmNQooNA4elLEHiGzeu8h9mpNnmfhaG8?usp=drive_fs",
+                "desc": "Cronograma y planificación del proyecto."
+            },
+            {
+                "category": "Planificación",
+                "label": "Bloc de notas",
+                "url": "https://notebooklm.google.com/notebook/75533cc0-5e1a-4c70-99df-1c40f54f28d0?pli=1",
+                "desc": "Registro de notas y consultas en NotebookLM."
+            },
+            {
+                "category": "Seguimiento Visual",
+                "label": "Fotos Antes",
+                "url": "https://photos.app.goo.gl/utwsZEPv3QZr7cqa7",
+                "desc": "Estado previo de la vivienda."
+            },
+            {
+                "category": "Seguimiento Visual",
+                "label": "Fotos Obra",
+                "url": "https://photos.app.goo.gl/JXdmQUJFVzKqQWqc7",
+                "desc": "Seguimiento fotográfico de los trabajos."
+            },
+            {
+                "category": "Documentación Técnica",
+                "label": "docObraFran",
+                "url": "https://drive.google.com/drive/folders/1T6ZunlFpLLy6-1CcQEIbDO2hbm0_o1Z4?usp=sharing",
+                "desc": "Carpetas de gestión y técnica."
+            },
+            {
+                "category": "Documentación Técnica",
+                "label": "Propuestas PVC",
+                "url": "https://drive.google.com/drive/folders/1JCrJx4Qfgctom7k-DPuB4-QcWG7SOMRm?usp=sharing",
+                "desc": "Presupuestos y propuestas de cerramientos."
+            },
+            {
+                "category": "Documentación Técnica",
+                "label": "Catálogo GC",
+                "url": "https://drive.google.com/open?id=1QULzcj105XNZ5tExTn_3nD0LFzn3frfO&usp=drive_fs",
+                "desc": "Catálogo de materiales y mobiliario."
+            },
+            {
+                "category": "Administración Económica",
+                "label": "Libro Cálculo",
+                "url": "https://docs.google.com/spreadsheets/d/1pokd8DrQ8SYahL2PNpgvFYsHvz564-8ZyFSkwAozaqk/edit?usp=sharing",
+                "desc": "Control de presupuestos, pagos y cuotas."
+            },
+            {
+                "category": "Legal/Ubicación",
+                "label": "Maps",
+                "url": "https://www.google.com/maps/place/Av+del+Manzanares,+146,+Carabanchel,+28019+Madrid/",
+                "desc": "Ubicación Google Maps."
+            },
+            {
+                "category": "Legal/Ubicación",
+                "label": "Catastro",
+                "url": "https://www1.sedecatastro.gob.es/CYCBienInmueble/OVCListaBienes.aspx?via=MANZANARES&tipoVia=AV&numero=146&DescProv=MADRID&prov=28&muni=900&codvia=3717&pest=urbana&from=OVCBusqueda",
+                "desc": "Ficha catastral del inmueble."
+            }
+        ],
+        "googleDocSource": "https://docs.google.com/document/d/1poMp_h2z5DlydOonSCVat9DsgK8s6AyEJXFwMDxaq0Q/export?format=txt"
+    },
+    {
+        "alias": "avm146",
+        "titulo": "AVM146 Rehabilitación",
+        "subtitulo": "Eventos del calendario y resumen de ejecución",
+        "sources": [
+            {
+                "id": "principal",
+                "type": "ics",
+                "url": "https://calendar.google.com/calendar/ical/179a497285bff3a1e40cf1c18b60b7680ef3668c57ab50692387f957a1c9f7f6%40group.calendar.google.com/public/basic.ics",
+                "label": "Calendario Principal",
+                "color": "#38bdf8"
+            },
+            {
+                "id": "gantt-obras",
+                "type": "sheet",
+                "url": "https://docs.google.com/spreadsheets/d/1r77C5thE8HSzmNQooNA4elLEHiGzeu8h9mpNnmfhaG8/export?format=csv",
+                "label": "Gantt Obras",
+                "color": "#10b981"
+            }
+        ],
+        "ganttGroupSeparators": [
+            " - ",
+            " — ",
+            " | ",
+            ":"
+        ],
+        "madridHolidays": [
+            "2026-05-15",
+            "2026-04-02",
+            "2026-04-03"
+        ],
+        "infographicLinks": [
+            {
+                "category": "Planificación",
+                "label": "Gantt",
+                "url": "https://docs.google.com/spreadsheets/d/1r77C5thE8HSzmNQooNA4elLEHiGzeu8h9mpNnmfhaG8?usp=drive_fs",
+                "desc": "Cronograma y planificación del proyecto."
+            },
+            {
+                "category": "Planificación",
+                "label": "Bloc de notas",
+                "url": "https://notebooklm.google.com/notebook/75533cc0-5e1a-4c70-99df-1c40f54f28d0?pli=1",
+                "desc": "Registro de notas y consultas en NotebookLM."
+            },
+            {
+                "category": "Seguimiento Visual",
+                "label": "Fotos Antes",
+                "url": "https://photos.app.goo.gl/utwsZEPv3QZr7cqa7",
+                "desc": "Estado previo de la vivienda."
+            },
+            {
+                "category": "Seguimiento Visual",
+                "label": "Fotos Obra",
+                "url": "https://photos.app.goo.gl/JXdmQUJFVzKqQWqc7",
+                "desc": "Seguimiento fotográfico de los trabajos."
+            },
+            {
+                "category": "Documentación Técnica",
+                "label": "docObraFran",
+                "url": "https://drive.google.com/drive/folders/1T6ZunlFpLLy6-1CcQEIbDO2hbm0_o1Z4?usp=sharing",
+                "desc": "Carpetas de gestión y técnica."
+            },
+            {
+                "category": "Documentación Técnica",
+                "label": "Propuestas PVC",
+                "url": "https://drive.google.com/drive/folders/1JCrJx4Qfgctom7k-DPuB4-QcWG7SOMRm?usp=sharing",
+                "desc": "Presupuestos y propuestas de cerramientos."
+            },
+            {
+                "category": "Documentación Técnica",
+                "label": "Catálogo GC",
+                "url": "https://drive.google.com/open?id=1QULzcj105XNZ5tExTn_3nD0LFzn3frfO&usp=drive_fs",
+                "desc": "Catálogo de materiales y mobiliario."
+            },
+            {
+                "category": "Administración Económica",
+                "label": "Libro Cálculo",
+                "url": "https://docs.google.com/spreadsheets/d/1pokd8DrQ8SYahL2PNpgvFYsHvz564-8ZyFSkwAozaqk/edit?usp=sharing",
+                "desc": "Control de presupuestos, pagos y cuotas."
+            },
+            {
+                "category": "Legal/Ubicación",
+                "label": "Maps",
+                "url": "https://www.google.com/maps/place/Av+del+Manzanares,+146,+Carabanchel,+28019+Madrid/",
+                "desc": "Ubicación Google Maps."
+            },
+            {
+                "category": "Legal/Ubicación",
+                "label": "Catastro",
+                "url": "https://www1.sedecatastro.gob.es/CYCBienInmueble/OVCListaBienes.aspx?via=MANZANARES&tipoVia=AV&numero=146&DescProv=MADRID&prov=28&muni=900&codvia=3717&pest=urbana&from=OVCBusqueda",
+                "desc": "Ficha catastral del inmueble."
+            }
+        ],
+        "googleDocSource": "https://docs.google.com/document/d/1poMp_h2z5DlydOonSCVat9DsgK8s6AyEJXFwMDxaq0Q/export?format=txt"
+    }
+]

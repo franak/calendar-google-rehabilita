@@ -1,0 +1,3 @@
+window.GOOGLE_API_KEY = "";
+window.CALENDAR_ID = "";
+window.ICS_URL = "http://localhost:8001/calendar.ics";

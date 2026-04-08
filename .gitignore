@@ -1,0 +1,14 @@
+node_modules/
+.env
+*.db
+calendar-cache*.ics
+infographic-cache*.json
+infographic-cache*.txt
+calendar.db
+subscriptions.db
+__pycache__/
+*.pyc
+uploads/
+.vscode/
+*.log
+.DS_Store

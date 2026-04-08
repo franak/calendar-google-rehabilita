@@ -1,0 +1,39 @@
+{
+  "name": "calendar-google-rehabilita",
+  "version": "2.0.0",
+  "description": "Calendario Google para gestión de rehabilitación",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "calendar",
+    "google",
+    "ics"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^12.8.0",
+    "crypto": "^1.0.1",
+    "csv-parse": "^6.2.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "ical.js": "^2.2.1",
+    "multer": "^2.1.1",
+    "node-cron": "^3.0.2",
+    "nodemailer": "^8.0.3",
+    "sqlite3": "^6.0.1"
+  },
+  "packageManager": "pnpm@10.32.1+sha512.a706938f0e89ac1456b6563eab4edf1d1faf3368d1191fc5c59790e96dc918e4456ab2e67d613de1043d2e8c81f87303e6b40d4ffeca9df15ef1ad567348f2be",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "better-sqlite3",
+      "sqlite3"
+    ]
+  }
+}

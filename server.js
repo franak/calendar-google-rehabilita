@@ -85,6 +85,33 @@ function isAdmin(req) {
 const ical = require('ical.js');
 
 const app = express();
+
+// Confiar en proxies para X-Forwarded-* headers
+app.set('trust proxy', 1);
+
+// ===== MIDDLEWARE CORS GLOBAL (PRIMERO) =====
+app.use((req, res, next) => {
+    const origin = req.headers.origin || '*';
+    const requestMethod = req.method;
+    
+    // Headers CORS
+    res.header('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin,X-Requested-With,Content-Type,Accept,Authorization,Cookie,X-HTTP-Method-Override');
+    res.header('Access-Control-Max-Age', '86400');
+    
+    // Manejar OPTIONS preflight
+    if (requestMethod === 'OPTIONS') {
+        return res.sendStatus(200);
+    }
+    next();
+});
+
+// ===== MIDDLEWARE JSON GLOBAL =====
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ limit: '10mb', extended: true }));
+
 const PORT = process.env.PORT || 8000;
 const SYNC_INTERVAL_MINUTES = parseInt(process.env.SYNC_INTERVAL_MINUTES || '30', 10);
 const SYNC_INTERVAL_MS = SYNC_INTERVAL_MINUTES * 60 * 1000;
@@ -139,6 +166,22 @@ async function getEnvFromRequest(req) {
 
     alias = alias || 'default';
     return db.getEnvironmentByAlias(alias);
+}
+
+// Función para construir URL de acceso usando la URL raíz actual del request
+function getAccessUrl(req, env) {
+    const protocol = req.get('x-forwarded-proto') || req.protocol || 'http';
+    const host = req.get('x-forwarded-host') || req.get('host') || 'localhost:8000';
+    const baseUrl = `${protocol}://${host}`;
+    
+    // Si hay un ?config en la URL actual, mantenerlo
+    const originalConfig = req.query.config || req.query.alias;
+    if (originalConfig) {
+        return `${baseUrl}/?login=true&config=${originalConfig}`;
+    }
+    
+    // Si no, usar el del entorno
+    return `${baseUrl}/?login=true&config=${env.alias}`;
 }
 
 // Función para enviar notificación por email
@@ -712,6 +755,8 @@ async function syncAliasSources(alias, sources) {
     log(`✓ Entorno ${alias} listo! Eventos: ${newEvents.length}. Cambios: ${changes.length}`);
 }
 
+
+
 // Endpoint para forzar sincronización manual
 app.get('/sync-now', async (req, res) => {
     await syncAllAliases();
@@ -1184,13 +1229,14 @@ app.post('/apiserv/admin/accounts', requireRole(['root', 'admin']), express.json
 
         if (req.body.sendNotify && email) {
             const env = db.getEnvironmentById(envId);
+            const accessUrl = getAccessUrl(req, env);
             const subject = `Nueva cuenta administrativa - ${env.title}`;
             const body = `
                 <h2>Bienvenido, ${username}</h2>
                 <p>Se ha creado una cuenta para ti en el sistema de Calendario ${env.title}.</p>
                 <p><strong>Usuario:</strong> ${username}</p>
                 <p><strong>Contraseña:</strong> ${password}</p>
-                <p>Acceso: <a href="${process.env.BASE_URL || 'http://localhost:8000'}?login=true&config=${env.alias}">Iniciar Sesión</a></p>
+                <p>Acceso: <a href="${accessUrl}">Iniciar Sesión</a></p>
             `;
             sendNotificationEmail(email, subject, body);
         }
@@ -1272,12 +1318,13 @@ app.put('/apiserv/admin/accounts/:id', requireAdminAuth, express.json(), (req, r
 
         if (req.body.sendNotify && email && password) {
             const env = db.getEnvironmentById(envId);
+            const accessUrl = getAccessUrl(req, env);
             const subject = `Actualización de credenciales - ${env.title}`;
             const body = `
                 <h2>Hola ${currentAccount.username},</h2>
                 <p>Se han actualizado tus credenciales de acceso al Calendario ${env.title}.</p>
                 <p><strong>Nueva Contraseña:</strong> ${password}</p>
-                <p>Acceso: <a href="${process.env.BASE_URL || 'http://localhost:8000'}?login=true&config=${env.alias}">Iniciar Sesión</a></p>
+                <p>Acceso: <a href="${accessUrl}">Iniciar Sesión</a></p>
             `;
             sendNotificationEmail(email, subject, body);
         }

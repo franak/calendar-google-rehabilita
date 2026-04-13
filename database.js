@@ -79,6 +79,19 @@ db.exec(`
     FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE SET NULL,
     FOREIGN KEY (environmentId) REFERENCES environments(id) ON DELETE CASCADE
   );
+
+  CREATE TABLE IF NOT EXISTS environment_documents (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    environmentId INTEGER NOT NULL,
+    type TEXT,
+    label TEXT,
+    url TEXT,
+    color TEXT,
+    metadata TEXT,
+    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (environmentId) REFERENCES environments(id) ON DELETE CASCADE
+  );
 `);
 
 // --- MIGRACIONES DE ESQUEMA ---
@@ -109,7 +122,7 @@ if (dbVersion < currentVersion) {
         db.exec("PRAGMA foreign_keys = OFF");
         db.transaction(() => {
             // Tablas a migrar
-            const tables = ['environments', 'users', 'subscriptions', 'accounts', 'audit_logs'];
+            const tables = ['environments', 'users', 'subscriptions', 'accounts', 'audit_logs', 'environment_documents'];
             const schemas = {
                 environments: `CREATE TABLE environments (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -179,6 +192,18 @@ if (dbVersion < currentVersion) {
                     details TEXT,
                     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
                     FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE SET NULL,
+                    FOREIGN KEY (environmentId) REFERENCES environments(id) ON DELETE CASCADE
+                )`,
+                environment_documents: `CREATE TABLE environment_documents (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    environmentId INTEGER NOT NULL,
+                    type TEXT,
+                    label TEXT,
+                    url TEXT,
+                    color TEXT,
+                    metadata TEXT,
+                    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+                    updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                     FOREIGN KEY (environmentId) REFERENCES environments(id) ON DELETE CASCADE
                 )`
             };
@@ -469,12 +494,16 @@ module.exports = {
     // Entornos
     insertEnvironment: (alias, props = {}) => {
         try {
+            let configJson = props.configJson || '{}';
+            if (typeof configJson === 'object') {
+                configJson = JSON.stringify(configJson);
+            }
             const insertInfo = insertEnvironment_stmt.run(
                 alias, 
                 props.title || '', 
                 props.subtitle || '', 
                 props.googleDocSource || '', 
-                props.configJson || '{}',
+                configJson,
                 props.logoUrl || null
             );
             return insertInfo;
